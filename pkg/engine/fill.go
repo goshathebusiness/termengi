@@ -2,14 +2,20 @@ package engine
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 )
 
 const (
-	BackgroundSymbol = "."
+	BackgroundSymbol = " "
+	ClearTerminal    = "\033[2J"
 )
 
 func BackgroundFill(w, h int) {
-	fmt.Print("\033[1000;1000H")
+	cmd := exec.Command("clear")
+	cmd.Stdout = os.Stdout
+	cmd.Run()
+
 	for i := 0; i <= h; i++ {
 		for j := 0; j <= w; j++ {
 			ReplaceSymbolAtPosition(i, j, BackgroundSymbol)

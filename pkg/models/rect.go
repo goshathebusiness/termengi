@@ -1,7 +1,15 @@
 package models
 
+import "sync"
+
+type object struct {
+	sync.Mutex
+}
+
 type Rect struct {
-	X, Y     float32
-	W, H     float32
+	object
+
+	X, Y     int
+	W, H     int
 	Rotation int
 }
